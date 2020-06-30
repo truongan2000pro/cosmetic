@@ -1,29 +1,48 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+require("./connect-mongo");
+const express = require("express");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const port = 9000;
+// const model = import("./modules/auth/model");
 
-const app = express()
-const router = require('./router')
-const cors = require('./cors')
-const errorHandler = require('./error-handler')
+const routes = require("./routes");
+const {
+  readTokenMiddleware,
+  authenticatedMiddleware,
+} = require("./modules/auth");
 
-const port = 9000
+const app = express();
 
-// using middlewares
-app.use(cors)
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(
+  session({
+    secret: "My secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 12 * 60 * 60 }, // 12hours
+  })
+);
+app.use(readTokenMiddleware);
 
-// routing
-app.use(router)
+// app.get("/test", (req, res, next) => {
+//   res.json(req.user);
+// });
 
-// // error handling
-app.use(errorHandler)
+// app.get("/require-token", authenticatedMiddleware, (req, res) => {
+//   res.send("ok");
+// });
 
-// listening
+app.use(routes);
+
+app.get("/", (req, res) => res.send("helo"));
+
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    message: err.message,
+    stack: err.stack,
+  });
+});
+
 app.listen(port, (err) => {
-  if(err) {
-    console.error('Server open failed!')
-    console.error(err)
-  } else {
-    console.log(`Server opened at port: ${port}`)
-  }
-})
+  console.log(err || "sever open");
+});
