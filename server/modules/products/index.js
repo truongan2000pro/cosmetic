@@ -16,7 +16,7 @@ const handlers = {
     try {
       let {
         pageIndex = 1,
-        pageSize = 5,
+        pageSize = 10,
         count,
         sort = "asc",
         sortBy = "title",
