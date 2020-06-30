@@ -18,9 +18,8 @@ async function createProduct(data) {
   let newProduct = await res.json();
   return newProduct;
 }
-async function searchProduct(id) {
-  let res = await fetch(`${productApiUrl}/${id}`);
+async function searchProduct(input) {
+  let res = await fetch(`${productApiUrl}?search=${input}`);
   let item = await res.json();
-  console.log(item);
   return item;
 }
