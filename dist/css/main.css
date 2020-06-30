@@ -96,10 +96,13 @@ hr {
 .title-product {
   margin-left: 100px;
   width: 100px;
+  margin-right: 40px;
   /* margin-right: 40px; */
 }
-.action-product {
-  margin-left: 40px;
+.action-product:hover {
+  /* margin-left: 40px; */
+  color: blue;
+  cursor: pointer;
 }
 .id-product {
   margin-left: 0px;
