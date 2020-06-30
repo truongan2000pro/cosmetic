@@ -4,7 +4,7 @@ async function init(e) {
   let listProduct = document.querySelector("#list-product-detail-container");
   let searchInput = document.querySelector("#search");
   let searchBtn = document.querySelector("#search-btn");
-
+  // get full products
   let list = await getListProduct();
   listProduct.innerHTML = ``;
   for (product in list) {
@@ -19,10 +19,10 @@ async function init(e) {
 </div>`;
     listProduct.innerHTML += html;
   }
+  // search Button event onclick
   searchBtn.onclick = async () => {
     let input = searchInput.value;
     let items = await searchProduct(input);
-    console.log(items);
     listProduct.innerHTML = ``;
     for (item in items) {
       const { _id, title } = items[item];
@@ -37,12 +37,13 @@ async function init(e) {
       listProduct.innerHTML += html;
     }
   };
+  // add onclick event to remove button
   for (let i = 0; i < listProduct.children.length; i++) {
-    let id = listProduct.children[i].firstElementChild.textContent.toString();
-    let lastChild = listProduct.children[i].lastElementChild;
+    let id = listProduct.children[i].firstElementChild.textContent.toString(); //  id is the first child so we get the textcontent
+    let lastChild = listProduct.children[i].lastElementChild; // lastchild is remove button
     lastChild.onclick = async () => {
-      await deleteProduct(id);
-      list = await getListProduct();
+      await deleteProduct(id); // call deleteProduct funtion to delete a product with an id
+      list = await getListProduct(); // after delete get all products back!
       listProduct.innerHTML = ``;
       for (product in list) {
         const { _id, title } = list[product];
@@ -59,8 +60,3 @@ async function init(e) {
     };
   }
 }
-// let removeBtn = document.querySelector("#remove-btn");
-//     let productId = document.querySelector(".id-product");
-//     removeBtn.onclick = async () => {
-//       console.log(productId.textContent);
-//     };
