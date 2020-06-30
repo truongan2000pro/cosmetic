@@ -1,4 +1,4 @@
-# Web 37 project 2 starter
+# Cosmetic project
 clone repo then run command to start project:
 - npm install
 - npm start
