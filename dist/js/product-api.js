@@ -28,7 +28,7 @@ async function deleteProduct(input) {
     method: "DELETE",
     headers: {
       Authorization:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWZiNTVhNDA0YjhjYjNmMWNiMzg1OWIiLCJlbWFpbCI6ImtpbmdkcmFnb243YThAZ21haWwuY29tIiwibmFtZSI6IkFuIiwic3RhdGUiOiJhdmFpbGFibGUiLCJfX3YiOjAsImlhdCI6MTU5MzUyOTgyMiwiZXhwIjoxNTkzNTUxNDIyfQ.KMGh1iMWc-KIDQ73p2T7O3nxM1CHXVWPXfjqBY3c5Ug    ",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWZiNTVhNDA0YjhjYjNmMWNiMzg1OWIiLCJlbWFpbCI6ImtpbmdkcmFnb243YThAZ21haWwuY29tIiwibmFtZSI6IkFuIiwic3RhdGUiOiJhdmFpbGFibGUiLCJfX3YiOjAsImlhdCI6MTU5MzYwMzY5MiwiZXhwIjoxNTkzNjI1MjkyfQ.fddT0QyshCU8LLp4WaruEsv6J7wpdIOuIDnTnBm_zAE",
     },
   });
   let deletedItem = await res.json();
